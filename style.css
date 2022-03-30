@@ -1,0 +1,95 @@
+html{scroll-behavior: smooth;}
+
+body{
+   margin: 0;
+   padding: 0;
+   color: var(--color);
+   background: var(--background);
+   text-align: left;
+   font-family: "open sans", sans-serif;
+   scroll-behavior: smooth;
+   --maincolor: #e67e22;
+   --secondcolor: #d35400;
+   --background: #eaf2f8;
+   --color: #000;
+   }
+
+   #workspace{
+     text-align: center;
+     padding: 30px;
+   }
+
+   #paper{
+     background: #181818;
+     color: #f8f8f8;
+     width: 210mm;
+     height: 297mm;
+     position: relative;
+     margin: 0;
+     margin-left: calc(50% - (210mm / 2));
+     margin-right: calc(50% - (210mm / 2));
+   }
+
+   #paperHeader{
+     width: auto;
+   }
+
+   #paperHeader p{
+     text-align: center;
+     position: relative;
+     top: 0;
+     margin: 0;
+     padding: 10px;
+     width: calc(100% / 3);
+     outline: none;
+   }
+
+   #paper p{
+     border: none;
+     outline: none;
+   }
+
+   #paper p:focus{
+     border: 2px solid red;
+   }
+
+   #paperHeader p:nth-child(1){
+     float: left;
+     background: blue;
+   }
+
+   #paperHeader p:nth-child(2){
+     background: red;
+     display: none;
+   }
+
+   #paperHeader p:nth-child(3){
+     float: right;
+     background: green;
+   }
+
+   #paperContent{
+     width: 100%;
+     height: 20%;
+     margin: 10% 0 0 0;
+     background: purple;
+     position: absolute;
+   }
+
+   @media print{
+     @page{
+       size: auto;
+       margin: 0mm;
+       color: #000;
+       padding: 0;
+       overflow: hidden;
+     }
+
+     p{
+       border: none;
+       color: #000;
+     }
+   }
+
+  ::selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
+  ::-moz-selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
