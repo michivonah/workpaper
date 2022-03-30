@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Workpaper</title>
+  <meta name="mobile-web-app-title" content="Anleitungen">
+  <meta name="apple-mobile-web-app-title" content="Anleitungen">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="shortcut icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="logo.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/akar-icons-fonts"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="description" content="Anleitungen">
+  <meta name="author" content="Michi von Ah">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="expires" content="43200">
+
+  <meta name="theme-color" content="#3498db">
+  <meta name="mobile-web-app-status-bar-style" content="#2980b9">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2980b9">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&family=Ubuntu&display=swap" rel="stylesheet">
+
+</head>
+<body>
+      <div id="content">
+        <div id="workspace">
+          <div id="paper">
+            <div id="paperHeader">
+              <p id="topic" contenteditable="true" onkeyup="update();">Topic</p>
+              <p>Middle</p>
+              <p id="dateTxt">Date</p>
+            </div>
+            <div id="paperContent">
+              <p contenteditable="true" onkeyup="saveData();">Hallo</p>
+            </div>
+            <div id="paperFooter">
+              <p>Left</p>
+              <p>Middle</p>
+              <p>Right</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script>
+      // Loading
+      window.addEventListener('load', () => {
+        if(window.matchMedia('(prefers-color-scheme: dark)').matches || localStorage.getItem('darkmode') == "true"){
+            //darkmode();
+        	}
+          loadData();
+          update();
+          updateDate();
+      });
+
+      function darkmode(){
+        document.body.style.setProperty('--maincolor', '#3498db');
+        document.body.style.setProperty('--secondcolor', '#2980b9');
+        document.body.style.setProperty('--background', '#181818');
+        document.body.style.setProperty('--color', '#fff');
+        console.log('Darkmode activated.');
+      }
+
+      function updateDate(){
+        const dateTime = new Date();
+        var day = dateTime.getDate();
+        var month = dateTime.getMonth() + 1;
+        var year = dateTime.getFullYear();
+        if(day.toString().length < 2) day = "0" + day;
+        if(month.toString().length < 2) month = "0" + month;
+        var date = day + "." + month + "." + year;
+        document.getElementById('dateTxt').textContent = date;
+      }
+
+      function update(){
+        document.title = document.getElementById('topic').textContent + " - Workpaper";
+      }
+
+      function saveData(){
+        var data = document.getElementById('paper').innerHTML;
+        localStorage.setItem("data", data);
+        console.log("Succesfully saved your data.");
+      }
+
+      function loadData(){
+        var data = localStorage.getItem("data");
+        if(data !== null){
+          document.getElementById('paper').innerHTML = data;
+          console.log("Succesfully restored your data.");
+        }
+      }
+      </script>
+</body>
+</html>
