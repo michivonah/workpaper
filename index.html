@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <title>Workpaper</title>
-  <meta name="mobile-web-app-title" content="Anleitungen">
-  <meta name="apple-mobile-web-app-title" content="Anleitungen">
+  <meta name="mobile-web-app-title" content="Workpaper">
+  <meta name="apple-mobile-web-app-title" content="Workpaper">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="shortcut icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="apple-touch-icon" sizes="152x152" href="logo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
   <link rel="apple-touch-icon" sizes="167x167" href="logo.png">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://unpkg.com/akar-icons-fonts"></script>
+  <script src="script.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css"/>
   <meta charset="UTF-8">
-  <meta name="description" content="Anleitungen">
+  <meta name="description" content="Workpaper">
   <meta name="author" content="Michi von Ah">
   <meta name="robots" content="noindex">
   <meta http-equiv="expires" content="43200">
 
-  <meta name="theme-color" content="#3498db">
-  <meta name="mobile-web-app-status-bar-style" content="#2980b9">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#2980b9">
+  <meta name="theme-color" content="#e74c3c">
+  <meta name="mobile-web-app-status-bar-style" content="#c0392b">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#c0392b">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -31,22 +31,50 @@
 </head>
 <body>
       <div id="content">
+        <div id="introduction">
+          <h1>Welcome to workpaper!</h1>
+          <p>This is a free and open source workspace for creating A4 documents. For example you can use it for creating worksheets.</p>
+          <p>Please note: The tool is still under development and many features are still missing or do not work yet.</p>
+          <img src="https://cdn.pixabay.com/photo/2016/11/18/12/05/white-male-1834102_1280.jpg" width="20%" height="auto">
+          <button onclick="openEditor();">Start editing!</button>
+        </div>
         <div id="workspace">
-          <div id="paper">
-            <div id="paperHeader">
-              <p id="topic" contenteditable="true" onkeyup="update();">Topic</p>
-              <p>Middle</p>
-              <p id="dateTxt">Date</p>
-            </div>
-            <div id="paperContent">
-              <p contenteditable="true" onkeyup="saveData();">Hallo</p>
-            </div>
-            <div id="paperFooter">
-              <p>Left</p>
-              <p>Middle</p>
-              <p>Right</p>
+          <div id="userContent">
+            <div id="paper" class="paper" onkeyup="saveData();">
+              <div class="paperHeader">
+                <p id="topic" contenteditable="true" onkeyup="update();">Topic</p>
+                <p contenteditable="true">Middle</p>
+                <p id="dateTxt" title="Current date">Date</p>
+              </div>
+
+              <div class="paperContent">
+                <div contenteditable="true">
+                  <p>Hello, here you can copy & paste anything you want.</p>
+                  <h3>Features</h3>
+                  <ul>
+                    <li>Autosave and reload</li>
+                    <li>Auto updating date</li>
+                    <li>Print out your workpapers &#040;Just press Ctrl+P&#041;</li>
+                    <li>Works local on your device - no data in the cloud!</li>
+                  </ul>
+                  <img src="https://cdn.pixabay.com/photo/2016/12/01/09/12/discussion-1874791_1280.jpg" width="40%" height="auto">
+                </div>
+              </div>
+
+              <div class="paperFooter">
+                <p contenteditable="true">Author</p>
+                <p contenteditable="true">Middle</p>
+                <p contenteditable="true">Right</p>
+              </div>
             </div>
           </div>
+
+          <div id="pageData">
+            <p id="version">1.0.0</p>
+          </div>
+
+          <button id="addPageBtn" onclick="addPage()">Add page <i class="ai-circle-plus"></i></button>
+          <button onclick="deleteData();">Delete all data! <i class="ai-trash-can"></i></button>
         </div>
       </div>
 
@@ -68,35 +96,6 @@
         document.body.style.setProperty('--background', '#181818');
         document.body.style.setProperty('--color', '#fff');
         console.log('Darkmode activated.');
-      }
-
-      function updateDate(){
-        const dateTime = new Date();
-        var day = dateTime.getDate();
-        var month = dateTime.getMonth() + 1;
-        var year = dateTime.getFullYear();
-        if(day.toString().length < 2) day = "0" + day;
-        if(month.toString().length < 2) month = "0" + month;
-        var date = day + "." + month + "." + year;
-        document.getElementById('dateTxt').textContent = date;
-      }
-
-      function update(){
-        document.title = document.getElementById('topic').textContent + " - Workpaper";
-      }
-
-      function saveData(){
-        var data = document.getElementById('paper').innerHTML;
-        localStorage.setItem("data", data);
-        console.log("Succesfully saved your data.");
-      }
-
-      function loadData(){
-        var data = localStorage.getItem("data");
-        if(data !== null){
-          document.getElementById('paper').innerHTML = data;
-          console.log("Succesfully restored your data.");
-        }
       }
       </script>
 </body>
