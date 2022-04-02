@@ -1,3 +1,9 @@
+/*
+
+Michi von Ah
+
+*/
+
 html{scroll-behavior: smooth;}
 
 body{
@@ -8,72 +14,138 @@ body{
    text-align: left;
    font-family: "open sans", sans-serif;
    scroll-behavior: smooth;
-   --maincolor: #e67e22;
-   --secondcolor: #d35400;
-   --background: #eaf2f8;
+   --theme1: #e74c3c;
+   --theme2: #c0392b;
+   --background: #f6f6f6;
    --color: #000;
+   }
+
+   #introduction{
+     text-align: center;
+     width: 80%;
+     margin: 0;
+     margin-left: 10%;
+   }
+
+   #introduction h3{
+     position: relative;
+     font-size: 20px;
+   }
+
+   #introduction h3::before{
+     position: absolute;
+     width: 4px;
+     height: 20px;
+     background: var(--theme1);
+     content: "";
+     left: 20%;
+     top: 50%;
+     transform: translateY(-10px);
+     display: none;
    }
 
    #workspace{
      text-align: center;
      padding: 30px;
+     display: none;
    }
 
-   #paper{
+   .paper{
      background: #181818;
      color: #f8f8f8;
      width: 210mm;
+     max-width: 210mm;
      height: 297mm;
+     max-height: 297mm;
      position: relative;
      margin: 0;
+     margin-top: 20px;
      margin-left: calc(50% - (210mm / 2));
      margin-right: calc(50% - (210mm / 2));
+     border-radius: 12px;
+     overflow: hidden;
    }
 
-   #paperHeader{
-     width: auto;
+   .paperHeader{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+     justify-content: space-between;
+     align-items: stretch;
    }
 
-   #paperHeader p{
+   .paperHeader p{
      text-align: center;
-     position: relative;
      top: 0;
      margin: 0;
      padding: 10px;
      width: calc(100% / 3);
      outline: none;
+     flex-shrink: 1;
+     flex-grow: 0;
+     flex-basis: auto;
    }
 
-   #paper p{
+   .paperFooter{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+     justify-content: space-between;
+     align-items: stretch;
+     position: absolute;
+     bottom: 0;
+   }
+
+   .paperFooter p{
+     text-align: center;
+     bottom: 0;
+     margin: 0;
+     padding: 10px;
+     width: calc(100% / 3);
+     outline: none;
+     flex-shrink: 1;
+     flex-grow: 0;
+     flex-basis: auto;
+   }
+
+   .paper p, .paper div{
      border: none;
      outline: none;
    }
 
-   #paper p:focus{
-     border: 2px solid red;
+   .paper p:focus, .paper div:focus{
+     border: 2px solid var(--theme1);
+     border-radius: 12px;
    }
 
-   #paperHeader p:nth-child(1){
-     float: left;
-     background: blue;
+   .paperContent{
+     width: 100%;
+     height: 20%;
+     margin: 0;
+     /*background: var(--theme2);*/
+     position: absolute;
    }
 
-   #paperHeader p:nth-child(2){
-     background: red;
+   #pageData{
      display: none;
    }
 
-   #paperHeader p:nth-child(3){
-     float: right;
-     background: green;
+   button{
+     width: 90%;
+     max-width: 210mm;
+     padding: 10px;
+     font-size: 20px;
+     background: var(--theme1);
+     color: #fff;
+     border: 2px solid var(--theme2);
+     border-radius: 12px;
+     margin: 20px;
    }
 
-   #paperContent{
-     width: 100%;
-     height: 20%;
-     margin: 10% 0 0 0;
-     background: purple;
-     position: absolute;
+   button:hover{
+     background: var(--theme2);
    }
 
    @media print{
@@ -85,11 +157,28 @@ body{
        overflow: hidden;
      }
 
-     p{
+     p, h1, h2, h3, h4, h5, h6, li, ul{
        border: none;
        color: #000;
      }
+
+     button{
+       display: none;
+     }
+
+     .paperFooter{
+       bottom: 20mm;
+     }
+
+     #introduction{
+       display: none;
+     }
+
+     #workspace{
+       display: block;
+     }
+
    }
 
-  ::selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
-  ::-moz-selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
+  ::selection {background: var(--theme1); color: #ffffff; border-radius: 12px;}
+  ::-moz-selection {background: var(--theme2); color: #ffffff; border-radius: 12px;}
