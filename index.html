@@ -36,9 +36,20 @@
           <p>This is a free and open source workspace for creating A4 documents. For example you can use it for creating worksheets.</p>
           <p>Please note: The tool is still under development and many features are still missing or do not work yet.</p>
           <img src="https://cdn.pixabay.com/photo/2016/11/18/12/05/white-male-1834102_1280.jpg" width="20%" height="auto">
+          <br>
           <button onclick="openEditor();">Start editing!</button>
         </div>
         <div id="workspace">
+          <div id="statusBar">
+            <p id="saveState"></p>
+          </div>
+
+          <div id="quickTools" style="display:none;">
+            <button><i class="ai-arrow-counter-clockwise"></i></button>
+            <button><i class="ai-copy"></i></button>
+            <button><i class="ai-trash-can"></i></button>
+          </div>
+
           <div id="userContent">
             <div id="paper" class="paper" onkeyup="saveData();">
               <div class="paperHeader">
@@ -70,7 +81,7 @@
           </div>
 
           <div id="pageData">
-            <p id="version">1.0.0</p>
+            <p id="version">1.0.1</p>
           </div>
 
           <button id="addPageBtn" onclick="addPage()">Add page <i class="ai-circle-plus"></i></button>
@@ -91,10 +102,10 @@
       });
 
       function darkmode(){
-        document.body.style.setProperty('--maincolor', '#3498db');
-        document.body.style.setProperty('--secondcolor', '#2980b9');
         document.body.style.setProperty('--background', '#181818');
         document.body.style.setProperty('--color', '#fff');
+        document.body.style.setProperty('--paper', '#f6f6f6');
+        document.body.style.setProperty('--paperColor', '#181818');
         console.log('Darkmode activated.');
       }
       </script>
