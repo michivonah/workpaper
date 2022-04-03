@@ -15,8 +15,13 @@ function update(){
 
 function saveData(){
   var data = document.getElementById('userContent').innerHTML;
+  var saveState = document.getElementById('saveState');
+  saveState.textContent = "Saving...";
   localStorage.setItem("data", data);
   console.log("Succesfully saved your data.");
+  setTimeout(function(){
+          saveState.textContent = "Saved!";
+  }, 1000);
 }
 
 function loadData(){
@@ -24,6 +29,8 @@ function loadData(){
   if(data !== null){
     document.getElementById('userContent').innerHTML = data;
     console.log("Succesfully restored your data.");
+    var saveState = document.getElementById('saveState');
+    saveState.textContent = "Restored succesfully - welcome back!";
   }
 }
 
