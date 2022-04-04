@@ -48,10 +48,73 @@ function openEditor(){
   document.getElementById('introduction').style.display = "none";
 }
 
-function addPage(){
-  var firstPage = document.getElementById('paper');
-  var newPage = firstPage.cloneNode(true);
-  var container = document.getElementById('userContent');
-  newPage.id = "";
-  container.appendChild(newPage);
+function addPage(type){
+  switch(type){
+    case 'duplicate':
+      var firstPage = document.getElementById('paper');
+      var newPage = firstPage.cloneNode(true);
+      var container = document.getElementById('userContent');
+      newPage.id = "";
+      container.appendChild(newPage);
+      break;
+    case 'empty':
+    default:
+      var newPage = document.createElement('div');
+      newPage.id = "paper2";
+      newPage.classList = "paper";
+      newPage.addEventListener("onkeyup", function(){
+        saveData();
+      });
+
+      var newPageHeader = document.createElement('div');
+      newPageHeader.classList = "paperHeader";
+
+      var newPageContent = document.createElement('div');
+      newPageContent.classList = "paperContent";
+      var newPageContent2 = document.createElement('div');
+      newPageContent2.contentEditable = 'true';
+      var newPageContentText = document.createElement('p');
+      newPageContentText.textContent = "Here you can write something...";
+      newPageContent2.appendChild(newPageContentText);
+      newPageContent.appendChild(newPageContent2);
+
+      var newPageFooter = document.createElement('div');
+      newPageFooter.classList = "paperFooter";
+
+      var newPageField1 = document.createElement('p');
+      newPageField1.textContent = "Text";
+      newPageField1.contentEditable = 'true';
+      newPageHeader.appendChild(newPageField1);
+
+      var newPageField2 = document.createElement('p');
+      newPageField2.textContent = "Text";
+      newPageField2.contentEditable = 'true';
+      newPageHeader.appendChild(newPageField2);
+
+      var newPageField3 = document.createElement('p');
+      newPageField3.textContent = "Text";
+      newPageField3.contentEditable = 'true';
+      newPageHeader.appendChild(newPageField3);
+
+      var newPageField4 = document.createElement('p');
+      newPageField4.textContent = "Text";
+      newPageField4.contentEditable = 'true';
+      newPageFooter.appendChild(newPageField4);
+
+      var newPageField5 = document.createElement('p');
+      newPageField5.textContent = "Text";
+      newPageField5.contentEditable = 'true';
+      newPageFooter.appendChild(newPageField5);
+
+      var newPageField6 = document.createElement('p');
+      newPageField6.textContent = "Text";
+      newPageField6.contentEditable = 'true';
+      newPageFooter.appendChild(newPageField6);
+
+      newPage.appendChild(newPageHeader);
+      newPage.appendChild(newPageContent);
+      newPage.appendChild(newPageFooter);
+      document.getElementById('userContent').appendChild(newPage);
+      break;
+  }
 }
