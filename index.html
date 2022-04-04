@@ -44,9 +44,9 @@
             <p id="saveState"></p>
           </div>
 
-          <div id="quickTools" style="display:none;">
+          <div id="quickTools">
             <button><i class="ai-arrow-counter-clockwise"></i></button>
-            <button><i class="ai-copy"></i></button>
+            <button onclick="addPage('duplicate')"><i class="ai-copy"></i></button>
             <button><i class="ai-trash-can"></i></button>
           </div>
 
@@ -81,10 +81,10 @@
           </div>
 
           <div id="pageData">
-            <p id="version">1.0.1</p>
+            <p id="version">1.0.2</p>
           </div>
 
-          <button id="addPageBtn" onclick="addPage()">Add page <i class="ai-circle-plus"></i></button>
+          <button id="addPageBtn" onclick="addPage('empty')">Add page <i class="ai-circle-plus"></i></button>
           <button onclick="deleteData();">Delete all data! <i class="ai-trash-can"></i></button>
         </div>
       </div>
