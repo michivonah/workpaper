@@ -43,6 +43,10 @@ function deleteData(){
   }
 }
 
+function currentPage(name){
+  sessionStorage.setItem("currentPage", name);
+}
+
 function openEditor(){
   document.getElementById('workspace').style.display = "block";
   document.getElementById('introduction').style.display = "none";
@@ -51,8 +55,8 @@ function openEditor(){
 function addPage(type){
   switch(type){
     case 'duplicate':
-      var firstPage = document.getElementById('paper');
-      var newPage = firstPage.cloneNode(true);
+      var currentPage = document.getElementById(sessionStorage.getItem("currentPage"));
+      var newPage = currentPage.cloneNode(true);
       var container = document.getElementById('userContent');
       newPage.id = "";
       container.appendChild(newPage);
@@ -60,10 +64,14 @@ function addPage(type){
     case 'empty':
     default:
       var newPage = document.createElement('div');
-      newPage.id = "paper2";
+      var count = document.getElementById("userContent").childElementCount + 1;
+      newPage.id = "paper" + count.toString();
       newPage.classList = "paper";
-      newPage.addEventListener("onkeyup", function(){
+      newPage.addEventListener("keyup", function(){
         saveData();
+      });
+      newPage.addEventListener("click", function(){
+        currentPage(newPage.id);
       });
 
       var newPageHeader = document.createElement('div');
@@ -117,4 +125,14 @@ function addPage(type){
       document.getElementById('userContent').appendChild(newPage);
       break;
   }
+}
+
+function clearPage(){
+  var currentPage = document.getElementById(sessionStorage.getItem("currentPage"));
+  currentPage.children[1].innerHTML = "cleared!";
+}
+
+function removePage(){
+  var currentPage = document.getElementById(sessionStorage.getItem("currentPage"));
+  currentPage.remove();
 }
