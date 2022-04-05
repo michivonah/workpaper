@@ -45,13 +45,13 @@
           </div>
 
           <div id="quickTools">
-            <button><i class="ai-arrow-counter-clockwise"></i></button>
+            <button onclick="clearPage();"><i class="ai-arrow-counter-clockwise"></i></button>
             <button onclick="addPage('duplicate')"><i class="ai-copy"></i></button>
-            <button><i class="ai-trash-can"></i></button>
+            <button onclick="removePage();"><i class="ai-trash-can"></i></button>
           </div>
 
           <div id="userContent">
-            <div id="paper" class="paper" onkeyup="saveData();">
+            <div id="paper" class="paper" onkeyup="saveData();" onclick="currentPage('paper')">
               <div class="paperHeader">
                 <p id="topic" contenteditable="true" onkeyup="update();">Topic</p>
                 <p contenteditable="true">Middle</p>
@@ -81,7 +81,7 @@
           </div>
 
           <div id="pageData">
-            <p id="version">1.0.2</p>
+            <p id="version">1.0.3</p>
           </div>
 
           <button id="addPageBtn" onclick="addPage('empty')">Add page <i class="ai-circle-plus"></i></button>
@@ -96,6 +96,7 @@
         if(window.matchMedia('(prefers-color-scheme: dark)').matches || localStorage.getItem('darkmode') == "true"){
             //darkmode();
         	}
+          sessionStorage.setItem("currentPage", "paper");
           loadData();
           update();
           updateDate();
